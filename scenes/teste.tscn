@@ -1,49 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://crfod1tcjptle"]
+[gd_scene load_steps=2 format=3 uid="uid://crfod1tcjptle"]
 
 [ext_resource type="PackedScene" uid="uid://puwfuod8p5mq" path="res://scenes/player.tscn" id="1_gpxrb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxoxi"]
-size = Vector2(174, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m16n8"]
-size = Vector2(180, 23)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xru07"]
-size = Vector2(20, 140)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6r8y"]
-size = Vector2(14, 156)
-
 [node name="Node2D" type="Node2D"]
-
-[node name="word_limits" type="Node" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="word_limits"]
-position = Vector2(76, 144)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="word_limits/StaticBody2D"]
-shape = SubResource("RectangleShape2D_jxoxi")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="word_limits"]
-position = Vector2(84, 2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="word_limits/StaticBody2D2"]
-position = Vector2(-2, 1.5)
-shape = SubResource("RectangleShape2D_m16n8")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="word_limits"]
-position = Vector2(161, 68)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="word_limits/StaticBody2D3"]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_xru07")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="word_limits"]
-position = Vector2(11, 79)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="word_limits/StaticBody2D4"]
-position = Vector2(-15, 0)
-shape = SubResource("RectangleShape2D_l6r8y")
 
 [node name="player" parent="." instance=ExtResource("1_gpxrb")]
 position = Vector2(81, 48)
