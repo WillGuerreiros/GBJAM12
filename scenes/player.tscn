@@ -19,3 +19,4 @@ texture = ExtResource("2_3fhlu")
 shape = SubResource("CapsuleShape2D_osike")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
