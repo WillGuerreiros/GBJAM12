@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://crfod1tcjptle"]
+[gd_scene load_steps=3 format=3 uid="uid://crfod1tcjptle"]
 
 [ext_resource type="PackedScene" uid="uid://puwfuod8p5mq" path="res://scenes/player.tscn" id="1_gpxrb"]
+[ext_resource type="Texture2D" uid="uid://t0uo4xgfsphd" path="res://assets/1tileset.png" id="1_oen4n"]
 
 [node name="Node2D" type="Node2D"]
 
+[node name="1Tileset" type="Sprite2D" parent="."]
+position = Vector2(80, 71)
+texture = ExtResource("1_oen4n")
+
 [node name="player" parent="." instance=ExtResource("1_gpxrb")]
-position = Vector2(81, 48)
+position = Vector2(80, 72)
