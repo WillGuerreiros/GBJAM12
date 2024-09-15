@@ -1,22 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://puwfuod8p5mq"]
+[gd_scene load_steps=12 format=3 uid="uid://puwfuod8p5mq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7lprj"]
-[ext_resource type="Texture2D" uid="uid://c26k6bh6rjfhn" path="res://assets/Sprite-0002.png" id="2_3fhlu"]
+[ext_resource type="Texture2D" uid="uid://bjh3rvchcbkti" path="res://assets/player walk down.png" id="2_vcbi6"]
+[ext_resource type="Script" path="res://scripts/player_state_machine.gd" id="3_5fxkr"]
+[ext_resource type="Script" path="res://scripts/idle_player_state.gd" id="4_k62gr"]
+[ext_resource type="Script" path="res://scripts/player_moving_state.gd" id="5_s8kjo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1cjs"]
+atlas = ExtResource("2_vcbi6")
+region = Rect2(0, 0, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmxe5"]
+atlas = ExtResource("2_vcbi6")
+region = Rect2(54, 0, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0yup"]
+atlas = ExtResource("2_vcbi6")
+region = Rect2(18, 0, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24yxh"]
+atlas = ExtResource("2_vcbi6")
+region = Rect2(36, 0, 18, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjvs4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1cjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmxe5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0yup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24yxh")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 6.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osike"]
-radius = 4.0
-height = 8.0
+radius = 5.0
+height = 24.0
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_7lprj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="spriteanim" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_3fhlu")
+sprite_frames = SubResource("SpriteFrames_wjvs4")
+animation = &"walk_down"
+frame_progress = 0.350502
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="player_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_osike")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="camera_player" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="player_state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_5fxkr")
+initial_state = NodePath("Moving_player_state")
+
+[node name="Idle_player_state" type="Node" parent="player_state_machine"]
+script = ExtResource("4_k62gr")
+
+[node name="Moving_player_state" type="Node" parent="player_state_machine"]
+script = ExtResource("5_s8kjo")
