@@ -84,7 +84,7 @@ script = ExtResource("1_7lprj")
 [node name="spriteanim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wjvs4")
 animation = &"walk_down"
-frame_progress = 0.993398
+frame_progress = 0.77283
 
 [node name="player_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_osike")
