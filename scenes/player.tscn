@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://puwfuod8p5mq"]
+[gd_scene load_steps=15 format=3 uid="uid://puwfuod8p5mq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7lprj"]
 [ext_resource type="Texture2D" uid="uid://bjh3rvchcbkti" path="res://assets/player walk down.png" id="2_vcbi6"]
 [ext_resource type="Script" path="res://scripts/player_state_machine.gd" id="3_5fxkr"]
 [ext_resource type="Script" path="res://scripts/idle_player_state.gd" id="4_k62gr"]
 [ext_resource type="Script" path="res://scripts/player_moving_state.gd" id="5_s8kjo"]
+[ext_resource type="Script" path="res://scripts/player_pickup_state.gd" id="6_1nwdd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1cjs"]
 atlas = ExtResource("2_vcbi6")
@@ -51,6 +52,10 @@ animations = [{
 radius = 8.0
 height = 18.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_j20k4"]
+font_size = 8
+outline_size = 1
+
 [sub_resource type="GDScript" id="GDScript_jajij"]
 script/source = "extends Label
 @onready var current_state_label: Label = $\".\"
@@ -85,14 +90,19 @@ position_smoothing_enabled = true
 [node name="current_state_label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_j20k4")
+autowrap_mode = 1
 script = SubResource("GDScript_jajij")
 
 [node name="player_state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_5fxkr")
-initial_state = NodePath("Idle_player_state")
+initial_state = NodePath("Pickup_player_state")
 
 [node name="Idle_player_state" type="Node" parent="player_state_machine"]
 script = ExtResource("4_k62gr")
 
 [node name="Moving_player_state" type="Node" parent="player_state_machine"]
 script = ExtResource("5_s8kjo")
+
+[node name="Pickup_player_state" type="Node" parent="player_state_machine"]
+script = ExtResource("6_1nwdd")
