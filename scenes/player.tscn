@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://puwfuod8p5mq"]
+[gd_scene load_steps=14 format=3 uid="uid://puwfuod8p5mq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7lprj"]
 [ext_resource type="Texture2D" uid="uid://bjh3rvchcbkti" path="res://assets/player walk down.png" id="2_vcbi6"]
@@ -14,11 +14,15 @@ region = Rect2(0, 0, 18, 26)
 atlas = ExtResource("2_vcbi6")
 region = Rect2(54, 0, 18, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0yup"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_njnnc"]
 atlas = ExtResource("2_vcbi6")
 region = Rect2(18, 0, 18, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_24yxh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqv4a"]
+atlas = ExtResource("2_vcbi6")
+region = Rect2(54, 0, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o2nv"]
 atlas = ExtResource("2_vcbi6")
 region = Rect2(36, 0, 18, 26)
 
@@ -37,14 +41,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j0yup")
+"texture": SubResource("AtlasTexture_njnnc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_24yxh")
+"texture": SubResource("AtlasTexture_tqv4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o2nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqv4a")
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 6.0
+"speed": 4.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osike"]
@@ -73,8 +83,8 @@ script = ExtResource("1_7lprj")
 
 [node name="spriteanim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wjvs4")
-animation = &"idle"
-frame_progress = 0.16018
+animation = &"walk_down"
+frame_progress = 0.993398
 
 [node name="player_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_osike")
