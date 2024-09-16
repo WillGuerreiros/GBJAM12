@@ -1,7 +1,6 @@
 extends Node
 class_name State
 
-signal transitioned
 
 func enter():
 	pass
@@ -9,8 +8,8 @@ func enter():
 func exit():
 	pass
 
-func update(_delta:float):
+func update_state(_delta:float):
 	pass
 
-func physics_update(_delta:float):
+func physics_update_state(_delta:float):
 	pass

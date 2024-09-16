@@ -1,11 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://puwfuod8p5mq"]
+[gd_scene load_steps=12 format=3 uid="uid://puwfuod8p5mq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7lprj"]
 [ext_resource type="Texture2D" uid="uid://bjh3rvchcbkti" path="res://assets/player walk down.png" id="2_vcbi6"]
 [ext_resource type="Script" path="res://scripts/player_state_machine.gd" id="3_5fxkr"]
-[ext_resource type="Script" path="res://scripts/idle_player_state.gd" id="4_k62gr"]
-[ext_resource type="Script" path="res://scripts/player_moving_state.gd" id="5_s8kjo"]
-[ext_resource type="Script" path="res://scripts/player_pickup_state.gd" id="6_k5b5k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1cjs"]
 atlas = ExtResource("2_vcbi6")
@@ -101,14 +98,4 @@ script = SubResource("GDScript_jajij")
 
 [node name="player_state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_5fxkr")
-initial_state = NodePath("Idle_player_state")
-
-[node name="Idle_player_state" type="Node" parent="player_state_machine"]
-script = ExtResource("4_k62gr")
-
-[node name="Moving_player_state" type="Node" parent="player_state_machine"]
-script = ExtResource("5_s8kjo")
-speed = 100.0
-
-[node name="Pickup_player_state" type="Node" parent="player_state_machine"]
-script = ExtResource("6_k5b5k")
+initial_state = NodePath("")

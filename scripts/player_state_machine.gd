@@ -1,4 +1,5 @@
 extends Node
+class_name Player_state_machine
 
 @export var initial_state : State
 
@@ -8,13 +9,9 @@ var states:Dictionary = {}
 func _ready() -> void:
 	for child in get_children(): #loop para colocar os estados no dicionario de estados
 		if child is State:
-			states[child.name.to_lower()]=child #to_lower() serve para deixar tudo em minusculo
-			child.transitioned.connect(on_child_transition) #conecta o sinal dos estados e chama a funcao on_child_transition
+			states[child.name.to_lower()] = child #to_lower() serve para deixar tudo em minusculo
 			print(states)
-	
-	if initial_state:
-		initial_state.enter()
-		current_state = initial_state
+
 
 func _process(delta: float) -> void:
 	if current_state:
@@ -23,16 +20,3 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.physics_update(delta)
-
-func on_child_transition(state,new_state_name): #funcao para lidar com a troca de estados
-	if state != current_state:
-		return
-	var new_state = states.get(new_state_name)
-	if !new_state:
-		return
-	
-	if current_state:
-		current_state.exit()
-	
-	new_state.enter()
-	current_state = new_state
