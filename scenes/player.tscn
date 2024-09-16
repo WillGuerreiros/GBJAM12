@@ -92,6 +92,7 @@ shape = SubResource("CapsuleShape2D_osike")
 
 [node name="camera_player" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="current_state_label" type="Label" parent="."]
 offset_right = 40.0
@@ -107,6 +108,7 @@ script = ExtResource("4_k62gr")
 
 [node name="Moving_player_state" type="Node" parent="player_state_machine"]
 script = ExtResource("5_s8kjo")
+speed = 100.0
 
 [node name="Pickup_player_state" type="Node" parent="player_state_machine"]
 script = ExtResource("6_k5b5k")
