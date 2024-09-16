@@ -9,4 +9,4 @@ class_name Player
 var direction: Vector2
 
 func _physics_process(delta: float) -> void:
-	pass	
+	pass

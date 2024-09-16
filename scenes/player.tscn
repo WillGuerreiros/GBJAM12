@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://puwfuod8p5mq"]
+[gd_scene load_steps=13 format=3 uid="uid://puwfuod8p5mq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7lprj"]
 [ext_resource type="Texture2D" uid="uid://bjh3rvchcbkti" path="res://assets/player walk down.png" id="2_vcbi6"]
@@ -48,18 +48,33 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osike"]
-radius = 5.0
-height = 24.0
+radius = 8.0
+height = 18.0
+
+[sub_resource type="GDScript" id="GDScript_jajij"]
+script/source = "extends Label
+@onready var current_state_label: Label = $\".\"
+@onready var player_state_machine: Node = $\"../player_state_machine\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	current_state_label.text = str(player_state_machine.current_state)
+"
 
 [node name="player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_7lprj")
 
 [node name="spriteanim" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_wjvs4")
-animation = &"walk_down"
-frame_progress = 0.350502
+animation = &"idle"
+frame_progress = 0.16018
 
 [node name="player_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_osike")
@@ -67,9 +82,14 @@ shape = SubResource("CapsuleShape2D_osike")
 [node name="camera_player" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 
+[node name="current_state_label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = SubResource("GDScript_jajij")
+
 [node name="player_state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_5fxkr")
-initial_state = NodePath("Moving_player_state")
+initial_state = NodePath("Idle_player_state")
 
 [node name="Idle_player_state" type="Node" parent="player_state_machine"]
 script = ExtResource("4_k62gr")
