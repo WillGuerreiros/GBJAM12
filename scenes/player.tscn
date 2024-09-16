@@ -96,6 +96,5 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = SubResource("GDScript_jajij")
 
-[node name="player_state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="player_state_machine" type="Node" parent="."]
 script = ExtResource("3_5fxkr")
-initial_state = NodePath("")
