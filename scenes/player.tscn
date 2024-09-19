@@ -62,7 +62,7 @@ height = 18.0
 motion_mode = 1
 script = ExtResource("1_7lprj")
 speed = 100.0
-accel = 100.0
+accel = 1000.0
 
 [node name="spriteanim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wjvs4")

@@ -31,8 +31,12 @@ func _physics_process(_delta: float) -> void:
 		currentState = states.IDLE_UP
 	elif Input.is_action_just_pressed("left_button"):
 		currentState = states.WALK_LEFT
+	elif Input.is_action_just_released("left_button"):
+		currentState = states.IDLE_LEFT
 	elif Input.is_action_just_pressed("right_button"):
 		currentState = states.WALK_RIGHT
+	elif Input.is_action_just_released("right_button"):
+		currentState = states.IDLE_RIGHT
 	
 	match currentState:
 		states.IDLE_DOWN:
@@ -40,25 +44,25 @@ func _physics_process(_delta: float) -> void:
 		states.PICKUP_DOWN:
 			pickup_down_function()
 		states.WALK_DOWN:
-			walk_down_function()
+			walk_down_function(_delta)
 		states.IDLE_UP:
 			idle_up_function()
 		states.PICKUP_UP:
 			pickup_up_function()
 		states.WALK_UP:
-			walk_up_function()
+			walk_up_function(_delta)
 		states.IDLE_LEFT:
 			idle_lef_function()
 		states.PICKUP_LEFT:
 			pickup_left_function()
 		states.WALK_LEFT:
-			walk_left_function()
+			walk_left_function(_delta)
 		states.IDLE_RIGHT:
 			idle_right_function()
 		states.PICKUP_RIGHT:
 			pickup_right_function()
 		states.WALK_RIGHT:
-			walk_right_function()
+			walk_right_function(_delta)
 	move_and_slide()
 
 func change_state(newState):
@@ -70,11 +74,13 @@ func idle_down_function():
 	player.velocity = Vector2.ZERO
 	spriteanim.flip_v = false
 
-func walk_down_function():
+func walk_down_function(_delta):
 	spriteanim.play("walk_down_animation")
 	spriteanim.flip_v = false
 	if velocity.y < speed:
-		velocity.y = velocity.y + 1*accel
+		velocity += Vector2.DOWN * accel * _delta
+		print(velocity)
+
 
 func pickup_down_function():
 	pass
@@ -88,27 +94,33 @@ func idle_up_function():
 func pickup_up_function():
 	pass
 
-func walk_up_function():
+func walk_up_function(_delta):
 	spriteanim.play("walk_down_animation")
 	spriteanim.flip_v = true
 	if velocity.y > -speed:
-		velocity.y = velocity.y -1*accel
+		velocity += Vector2.UP*accel*_delta
 		print(player.velocity)
 
 func idle_lef_function():
-	pass
+	spriteanim.play("idle_down_animation")
+	player.velocity = Vector2.ZERO
 
 func pickup_left_function():
 	pass
 
-func walk_left_function():
-	pass
+func walk_left_function(_delta):
+	if velocity.x > -speed:
+		velocity += Vector2.LEFT*_delta*accel
+		print(velocity)
 
 func idle_right_function():
-	pass
+	spriteanim.play("idle_down_animation")
+	player.velocity = Vector2.ZERO
 
 func pickup_right_function():
 	pass
 
-func walk_right_function():
-	pass
+func walk_right_function(_delta):
+	if velocity.x < speed:
+		velocity += Vector2.RIGHT*_delta*accel
+		print(velocity)
