@@ -33,7 +33,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_rmxe5")
 }],
 "loop": true,
-"name": &"idle_animation",
+"name": &"idle_down_animation",
 "speed": 3.0
 }, {
 "frames": [{
@@ -61,12 +61,12 @@ height = 18.0
 [node name="player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_7lprj")
-speed = 50.0
-accel = 1.0
+speed = 100.0
+accel = 100.0
 
 [node name="spriteanim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wjvs4")
-animation = &"idle_animation"
+animation = &"idle_down_animation"
 
 [node name="player_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_osike")
