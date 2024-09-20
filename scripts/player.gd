@@ -28,12 +28,17 @@ func match_direction(direction):
 	match direction:
 		Vector2.UP:
 			velocity = Vector2.UP*speed
+			spriteanim.play("walk_up_animation")
 		Vector2.DOWN:
 			velocity = Vector2.DOWN*speed
 			spriteanim.play("walk_down_animation")
 		Vector2.LEFT:
+			spriteanim.flip_h = true
+			spriteanim.play("walk_side_animation")
 			velocity = Vector2.LEFT*speed
 		Vector2.RIGHT:
+			spriteanim.flip_h = false
+			spriteanim.play("walk_side_animation")
 			velocity = Vector2.RIGHT*speed
 		Vector2.ZERO:
 			velocity = Vector2.ZERO*speed
